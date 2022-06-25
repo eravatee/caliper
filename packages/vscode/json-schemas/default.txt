@@ -2,130 +2,120 @@
     "$schema": "https://github.com/eravatee/caliper/blob/json-schemas/packages/vscode/json-schemas/default",
     "$ref": "#/definitions/configurationHelper",
     "definitions": {
-        "configurationHelper": {
+        "caliper": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-                "caliper": {
+                "auth": {
+                    "description": "Settings related to the authorization",
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
-                        "auth": {
-                            "description": "Settings related to the authorization",
+                        "prometheuspush": {
                             "type": "object",
                             "additionalProperties": false,
+                            "description": "Prometheus Push Gateway",
                             "properties": {
-                                "prometheuspush": {
-                                    "type": "object",
-                                    "additionalProperties": false,
-                                    "description": "Prometheus Push Gateway",
-                                    "properties": {
-                                        "username": {
-                                            "description": "username",
-                                            "type": "null"
-                                        },
-                                        "password": {
-                                            "description": "password",
-                                            "type": "null"
-                                        }
-                                    },
-                                    "required": [
-                                        "password",
-                                        "username"
-                                    ],
-                                    "title": "prometheuspush"
+                                "username": {
+                                    "description": "username",
+                                    "type": "null"
                                 },
-                                "prometheus": {
-                                    "properties": {
-                                        "username": {
-                                            "description": "username",
-                                            "type": "null"
-                                        },
-                                        "password": {
-                                            "description": "password",
-                                            "type": "null"
-                                        }
-                                    },
-                                    "required": [
-                                        "password",
-                                        "username"
-                                    ],
-                                    "title": "prometheus"
+                                "password": {
+                                    "description": "password",
+                                    "type": "null"
                                 }
                             },
-                            "title": "auth"
+                            "required": [
+                                "password",
+                                "username"
+                            ],
+                            "title": "prometheuspush"
                         },
-                        "bind": {
-                            "$ref": "#/definitions/Bind"
-                        },
-                        "report": {
-                            "$ref": "#/definitions/Report"
-                        },
-                        "workspace": {
-                            "type": "string"
-                        },
-                        "projectconfig": {
-                            "type": "null"
-                        },
-                        "userconfig": {
-                            "type": "null"
-                        },
-                        "machineconfig": {
-                            "type": "null"
-                        },
-                        "benchconfig": {
-                            "type": "null"
-                        },
-                        "networkconfig": {
-                            "type": "null"
-                        },
-                        "progress": {
-                            "$ref": "#/definitions/Progress"
-                        },
-                        "monitor": {
-                            "$ref": "#/definitions/Monitor"
-                        },
-                        "observer": {
-                            "$ref": "#/definitions/Observer"
-                        },
-                        "logging": {
-                            "$ref": "#/definitions/Logging"
-                        },
-                        "worker": {
-                            "$ref": "#/definitions/Worker"
-                        },
-                        "flow": {
-                            "$ref": "#/definitions/Flow"
-                        },
-                        "fabric": {
-                            "$ref": "#/definitions/Fabric"
+                        "prometheus": {
+                            "properties": {
+                                "username": {
+                                    "description": "username",
+                                    "type": "null"
+                                },
+                                "password": {
+                                    "description": "password",
+                                    "type": "null"
+                                }
+                            },
+                            "required": [
+                                "password",
+                                "username"
+                            ],
+                            "title": "prometheus"
                         }
                     },
-                    "required": [
-                        "auth",
-                        "benchconfig",
-                        "bind",
-                        "fabric",
-                        "flow",
-                        "logging",
-                        "machineconfig",
-                        "monitor",
-                        "networkconfig",
-                        "observer",
-                        "progress",
-                        "projectconfig",
-                        "report",
-                        "userconfig",
-                        "worker",
-                        "workspace"
-                    ],
-                    "title": "Caliper"
+                    "title": "auth"
+                },
+                "bind": {
+                    "$ref": "#/definitions/Bind"
+                },
+                "report": {
+                    "$ref": "#/definitions/Report"
+                },
+                "workspace": {
+                    "type": "string"
+                },
+                "projectconfig": {
+                    "type": "null"
+                },
+                "userconfig": {
+                    "type": "null"
+                },
+                "machineconfig": {
+                    "type": "null"
+                },
+                "benchconfig": {
+                    "type": "null"
+                },
+                "networkconfig": {
+                    "type": "null"
+                },
+                "progress": {
+                    "$ref": "#/definitions/Progress"
+                },
+                "monitor": {
+                    "$ref": "#/definitions/Monitor"
+                },
+                "observer": {
+                    "$ref": "#/definitions/Observer"
+                },
+                "logging": {
+                    "$ref": "#/definitions/Logging"
+                },
+                "worker": {
+                    "$ref": "#/definitions/Worker"
+                },
+                "flow": {
+                    "$ref": "#/definitions/Flow"
+                },
+                "fabric": {
+                    "$ref": "#/definitions/Fabric"
                 }
             },
             "required": [
-                "caliper"
+                "auth",
+                "benchconfig",
+                "bind",
+                "fabric",
+                "flow",
+                "logging",
+                "machineconfig",
+                "monitor",
+                "networkconfig",
+                "observer",
+                "progress",
+                "projectconfig",
+                "report",
+                "userconfig",
+                "worker",
+                "workspace"
             ],
-            "title": "configurationHelper"
+            "title": "caliper"
         }
     }
 }
