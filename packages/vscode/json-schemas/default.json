@@ -1,0 +1,540 @@
+{
+    "$schema": "https://json-schema.org/draft-06/schema",
+    "$ref": "#/definitions/ConfigurationHelper",
+    "definitions": {   
+        "ConfigurationHelper": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "caliper": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "auth": {
+                            "type": "object",
+                            "description": "Settings related to the authorization",
+                            "additionalProperties": false,
+                            "properties": {
+                                "prometheuspush": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "description": "Prometheus Push Gateway",
+                                    "properties": {
+                                        "username": {
+                                            "description": "username",
+                                            "type": "null"
+                                        },
+                                        "password": {
+                                            "description": "password",
+                                            "type": "null"
+                                        }
+                                    },
+                                    "title": "Prometheus Push"
+                                },
+                                "prometheus": {
+                                    "properties": {
+                                        "username": {
+                                            "description": "username",
+                                            "type": "null"
+                                        },
+                                        "password": {
+                                            "description": "password",
+                                            "type": "null"
+                                        }
+                                    },
+                                    "title": "Prometheus"
+                                }
+                            },
+                            "title": "auth"
+                        },
+                        "bind": {
+                            "description": "Settings related to the binding command",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "sut": {
+                                    "description":"The binding specification of the SUT in the <SUT type>:<SDK version> format",
+                                    "type": "null"
+                                },
+                                "cwd": {
+                                    "description": "The CWD to use for the binding (i.e., npm install) command",
+                                    "type": "null"
+                                },
+                                "args": {
+                                    "description": "The additional args to pass to the binding (i.e., npm install) command",
+                                    "type": "null"
+                                },
+                                "file": {
+                                    "description": "The file to use when binding (replace supported defaults)",
+                                    "type": "null"
+                                }
+                            },
+                            "title": "Bind"
+                        },
+                        "report": {
+                            "description": "Report file-related options", 
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "path": {
+                                    "description": "The absolute or workspace-relative path of the report file.",
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "description": "The options to pass to fs.writeFile",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "flag": {
+                                            "description": "The mode in which file will be opened in", 
+                                            "type": "string"
+                                        },
+                                        "mode": {
+                                            "description": "Access Permissions for file",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "title": "reportOptions"
+                                },
+                                "precision": {
+                                    "description": "Precision (significant figures) for the report output",
+                                    "type": "integer"
+                                },
+                                "charting": {
+                                    "description": "Charting options",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "hue": {
+                                            "type": "integer"
+                                        },
+                                        "scheme": {
+                                            "type": "string"
+                                        },
+                                        "transparency": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "title": "charting"
+                                }
+                            },
+                            "title": "report"
+                        },
+                        "workspace": {
+                            "description": "Workspace directory that contains all configuration information",
+                            "type": "string"
+                        },
+                        "projectconfig": {
+                            "description": "The file path for the project-level configuration file. Can be relative to the workspace.",
+                            "type": "null"
+                        },
+                        "userconfig": {
+                            "description": "The file path for the user-level configuration file. Can be relative to the workspace.",
+                            "type": "null"
+                        },
+                        "machineconfig": {
+                            "description": "The file path for the user-level configuration file. Can be relative to the workspace.",
+                            "type": "null"
+                        },
+                        "benchconfig": {
+                            "description": "Path to the benchmark workload file that describes the test workers(s), test rounds and monitor",
+                            "type": "null"
+                        },
+                        "networkconfig": {
+                            "description": "Path to the blockchain configuration file that contains information required to interact with the SUT",
+                            "type": "null"
+                        },
+                        "progress": {
+                            "description": "Configurations related to caliper test progress",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "reporting": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enabled": {
+                                            "description": "Enable the reporting action",
+                                            "type": "boolean"
+                                        },
+                                        "interval": {
+                                            "description": "Reporting frequency",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "title": "reporting"
+                                }
+                            },
+                            "title": "progress"
+                        },
+                        "monitor": {
+                            "description": "Configurations related to caliper resource monitors",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "interval": {
+                                    "description": "Update interval",
+                                    "type": "integer"
+                                }
+                            },
+                            "title": "monitor"
+                        },
+                        "observer": {
+                            "description": "Configurations related to caliper transaction observers",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "internal": {
+                                    "description": "Internal tx observer",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "interval": {
+                                            "description": "Update interval",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "title": "Monitor"
+                                },
+                                "prometheuspush": {
+                                    "description": "Prometheus PushGateway tx observer",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "interval": {
+                                            "description": "Update interval",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "title": "Monitor"
+                                },
+                                "prometheus": {
+                                    "description": "Prometheus tx observer",
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "scrapeport": {
+                                            "description": "Default scrape port for prometheus tx observerl",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "title": "ObserverPrometheus"
+                                }
+                            },
+                            "title": "Observer"
+                        },
+                        "logging": {
+                            "description": "Specifies the message structure through placeholders",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "template": {
+                                    "type": "string"
+                                },
+                                "formats": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "timestamp": {
+                                            "type": "string"
+                                        },
+                                        "label": {
+                                            "type": "string"
+                                        },
+                                        "json": {
+                                            "type": "boolean"
+                                        },
+                                        "pad": {
+                                            "type": "boolean"
+                                        },
+                                        "align": {
+                                            "type": "boolean"
+                                        },
+                                        "attributeformat": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "level": {
+                                                    "type": "string"
+                                                },
+                                                "label": {
+                                                    "type": "string"
+                                                },
+                                                "module": {
+                                                    "type": "string"
+                                                },
+                                                "metadata": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "title": "Attributeformat"
+                                        },
+                                        "colorize": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "level": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "boolean"
+                                                },
+                                                "colors": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "info": {
+                                                            "type": "string"
+                                                        },
+                                                        "error": {
+                                                            "type": "string"
+                                                        },
+                                                        "warn": {
+                                                            "type": "string"
+                                                        },
+                                                        "debug": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "title": "Colors"
+                                                }
+                                            },
+                                            "title": "Colorize"
+                                        }
+                                    },
+                                    "title": "Formats"
+                                },
+                                "targets": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "console": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "target": {
+                                                    "type": "string"
+                                                },
+                                                "enabled": {
+                                                    "type": "boolean"
+                                                },
+                                                "options": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "level": {
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "level"
+                                                    ],
+                                                    "title": "ConsoleOptions"
+                                                }
+                                            },
+                                            "title": "Console"
+                                        },
+                                        "file": {
+                                            "type": "object",
+                                            "additionalProperties": false,
+                                            "properties": {
+                                                "target": {
+                                                    "type": "string"
+                                                },
+                                                "enabled": {
+                                                    "type": "boolean"
+                                                },
+                                                "options": {
+                                                    "type": "object",
+                                                    "additionalProperties": false,
+                                                    "properties": {
+                                                        "level": {
+                                                            "type": "string"
+                                                        },
+                                                        "filename": {
+                                                            "type": "string"
+                                                        },
+                                                        "maxSize": {
+                                                            "type": "string"
+                                                        },
+                                                        "zippedArchive": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "options": {
+                                                            "type": "object",
+                                                            "additionalProperties": false,
+                                                            "properties": {
+                                                                "flags": {
+                                                                    "type": "string"
+                                                                },
+                                                                "mode": {
+                                                                    "type": "integer"
+                                                                }
+                                                            },
+                                                            "required": [
+                                                                "flags",
+                                                                "mode"
+                                                            ],
+                                                            "title": "OptionsOptions"
+                                                        }
+                                                    },
+                                                    "title": "FileOptions"
+                                                }
+                                            },
+                                            "title": "File"
+                                        }
+                                    },
+                                    "title": "Targets"
+                                }
+                            },
+                            "title": "Logging"
+                        },
+                        "worker": {
+                            "description": "Indicate if workers are in distributed mode",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "remote": {
+                                    "type": "boolean"
+                                },
+                                "communication": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "method": {
+                                            "type": "string"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "title": "Communication"
+                                }
+                            },
+                            "title": "Worker"
+                        },
+                        "flow": {
+                            "description": "Caliper flow options",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "skip": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "start": {
+                                        "type": "boolean"
+                                    },
+                                    "init": {
+                                        "type": "boolean"
+                                    },
+                                    "install": {
+                                        "type": "boolean"
+                                    },
+                                    "test": {
+                                        "type": "boolean"
+                                    },
+                                    "end": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "title": "Only"
+                                },
+                                "only": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "start": {
+                                            "type": "boolean"
+                                        },
+                                        "init": {
+                                            "type": "boolean"
+                                        },
+                                        "install": {
+                                            "type": "boolean"
+                                        },
+                                        "test": {
+                                            "type": "boolean"
+                                        },
+                                        "end": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "title": "Only"
+                                }
+                            },
+
+                            "title": "Flow"
+                        },
+                        "fabric": {
+                            "description": "Configurations related to the Fabric Connector",
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "verify": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "proposalresponse": {
+                                            "type": "boolean"
+                                        },
+                                        "readwritesets": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": [
+                                        "proposalresponse",
+                                        "readwritesets"
+                                    ],
+                                    "title": "Verify"
+                                },
+                                "timeout": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "invokeorquery": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "invokeorquery"
+                                    ],
+                                    "title": "Timeout"
+                                },
+                                "loadbalancing": {
+                                    "type": "string"
+                                },
+                                "latencythreshold": {
+                                    "type": "integer"
+                                },
+                                "gateway": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "localhost": {
+                                            "type": "boolean"
+                                        },
+                                        "eventstrategy": {
+                                            "type": "string"
+                                        },
+                                        "querystrategy": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "title": "Gateway"
+                                }
+                            },
+                            "title": "Fabric"
+                        }
+                    },
+                    
+                    "title": "caliper"
+                }
+            },
+            "title": "Configuration Helper"
+        }
+    }
+}
