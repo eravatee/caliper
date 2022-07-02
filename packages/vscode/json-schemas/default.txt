@@ -490,10 +490,6 @@
                                             "type": "boolean"
                                         }
                                     },
-                                    "required": [
-                                        "proposalresponse",
-                                        "readwritesets"
-                                    ],
                                     "title": "Verify"
                                 },
                                 "timeout": {
@@ -538,7 +534,6 @@
                             "title": "Fabric"
                         }
                     },
-                    
                     "title": "Caliper"
                 }
             },
